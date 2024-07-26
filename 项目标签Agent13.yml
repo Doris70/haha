@@ -1,0 +1,256 @@
+app:
+  description: "\u7528\u201C\u9879\u76EE\u4E00\u53E5\u8BDD\u6982\u8FF0\u201D\u603B\
+    \u7ED3\u9879\u76EE\u6807\u7B7E\uFF0C\u5B58\u5165\u6570\u636E\u5E93\uFF0C\u4E0B\
+    \u4E00\u4E2A\u9879\u76EE\u518D\u6765\u7684\u65F6\u5019\u5148\u5728\u6570\u636E\
+    \u5E93\u91CC\u9762\u68C0\u7D22\u6807\u7B7E\u662F\u5426\u7B26\u5408\u8FD9\u4E2A\
+    \u9879\u76EE\uFF0C\u4E0D\u7B26\u5408\u5C31\u65B0\u5EFA\u6807\u7B7E\uFF0C\u7B26\
+    \u5408\u5C31\u76F4\u63A5\u662F\u8FD9\u4E2A\u6807\u7B7E\u3002"
+  icon: triangular_flag_on_post
+  icon_background: '#D5D9EB'
+  mode: workflow
+  name: "\u9879\u76EE\u6807\u7B7EAgent13"
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1721834802783-source-1721834948752-target
+      source: '1721834802783'
+      sourceHandle: source
+      target: '1721834948752'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1721834799233-source-1721834802783-target
+      source: '1721834799233'
+      sourceHandle: source
+      target: '1721834802783'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: "\u9879\u76EE\u4E00\u53E5\u8BDD\u603B\u7ED3"
+          max_length: 500
+          options: []
+          required: true
+          type: paragraph
+          variable: summary
+      height: 90
+      id: '1721834799233'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 3baecab8-6f56-4e4c-bf81-5f1625b23144
+          role: system
+          text: "\u5C06\u201C\u9879\u76EE\u4E00\u53E5\u8BDD\u6982\u8FF0\u201D\u603B\
+            \u7ED3\u63D0\u70BC\u6210\u4E00\u4E2A\u8BCD\u3002\u4F8B\u5982\u201C\u4FE1\
+            \u606F\u79D1\u6280\u201D\u3001\u201C\u6559\u80B2\u57F9\u8BAD\u201D\u3001\
+            \u201C\u9910\u996E\u7F8E\u98DF\u201D\u3001\u201C\u91D1\u878D\u670D\u52A1\
+            \u201D\u3001\u201C\u533B\u7597\u5065\u5EB7\u201D\u3001\u201C\u6587\u5316\
+            \u4F20\u5A92\u201D\u7B49\u7C7B\u522B\u3002"
+        - id: 965388d9-0a60-448b-85e5-3d5c063a8fee
+          role: user
+          text: '{{#1721834799233.summary#}}'
+        selected: false
+        title: "\u6807\u7B7E"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721834802783'
+      position:
+        x: 684
+        y: 282
+      positionAbsolute:
+        x: 684
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 54
+      id: '1721834948752'
+      position:
+        x: 988
+        y: 282
+      positionAbsolute:
+        x: 988
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: cc9fd3ec-05db-4e33-9693-8b140620244f
+          role: system
+          text: ''
+        selected: false
+        title: LLM 2
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721834967440'
+      position:
+        x: 409
+        y: 103
+      positionAbsolute:
+        x: 409
+        y: 103
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: doris
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u8DDF\u6570\u636E\u5E93\u7684\
+          \u6807\u7B7E\u6BD4\u5BF9\u3002\",\"type\":\"text\",\"version\":1}],\"direction\"\
+          :\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\"\
+          :1,\"textFormat\":0},{\"children\":[{\"detail\":0,\"format\":0,\"mode\"\
+          :\"normal\",\"style\":\"\",\"text\":\"\u5982\u679C\u6570\u636E\u5E93\u91CC\
+          \u9762\u6CA1\u6709\u6807\u7B7E\u5C31\u6267\u884C\u4E0B\u4E00\u6B65\u7136\
+          \u540E\u586B\u5165\u6807\u7B7E\u3002\u6709\u5C31\u770B\u8FD9\u4E2A\u6807\
+          \u7B7E\u80FD\u4E0D\u80FD\u5957\u4E0A\u8FD9\u4E2A\u9879\u76EE\u3002\",\"\
+          type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"\
+          indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\"\
+          :\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1721834989318'
+      position:
+        x: 409
+        y: 198
+      positionAbsolute:
+        x: 409
+        y: 198
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: doris
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u8BA9AI\u603B\u7ED3\u751F\u6210\
+          \u6807\u7B7E\u585E\u8FDB\u6570\u636E\u5E93\u6709\u70B9\u96BE\u5B9E\u73B0\
+          \u4E86\uFF0C\u56E0\u4E3A\u540E\u7EED\u8FD8\u6D89\u53CA\u5230\u6BD4\u5BF9\
+          \u3002\u8981\u4E0D\u5C31\u76F4\u63A5\u9884\u8BBE\u51E0\u4E2A\u6807\u9898\
+          \u76F4\u63A5\u585E\u8FDB\u6570\u636E\u5E93\u5F97\u4E86\u3002\",\"type\"\
+          :\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\"\
+          :0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\"\
+          :\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1721898204342'
+      position:
+        x: 684
+        y: 186
+      positionAbsolute:
+        x: 684
+        y: 186
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    viewport:
+      x: -66
+      y: -28.5
+      zoom: 1

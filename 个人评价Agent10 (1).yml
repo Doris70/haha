@@ -1,0 +1,419 @@
+app:
+  description: "\u4E2A\u4EBA\u9636\u6BB5\u6027\u8BC4\u4EF7\u548C\u4E2A\u4EBA\u9879\
+    \u76EE\u8BC4\u4EF7\u90FD\u53EF\u4EE5\u7528\u8FD9\u4E2Aagent\uFF0C\u53EA\u4E0D\u8FC7\
+    \u5582\u7ED9\u5B83\u7684\u6570\u636E\u4E0D\u4E00\u6837\u7F62\u4E86\u3002"
+  icon: triangular_flag_on_post
+  icon_background: '#D5D9EB'
+  mode: workflow
+  name: "\u4E2A\u4EBA\u8BC4\u4EF7Agent10"
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1721722371654-source-1721736102429-target
+      source: '1721722371654'
+      sourceHandle: source
+      target: '1721736102429'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1721722684457-source-1721722392705-target
+      source: '1721722684457'
+      sourceHandle: source
+      target: '1721722392705'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1721722392705-source-1721874298336-target
+      source: '1721722392705'
+      sourceHandle: source
+      target: '1721874298336'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1721736102429-source-1721722684457-target
+      source: '1721736102429'
+      sourceHandle: source
+      target: '1721722684457'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: "\u53D1\u5E03\u4EFB\u52A1\u603B\u6570"
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: tasks
+        - label: "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u603B\u6570"
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: task_completed
+        - label: "\u5DF2\u4E0A\u4F20\u6587\u6863\u6570"
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: documents_uploaded
+      height: 142
+      id: '1721722371654'
+      position:
+        x: 190.86604466781705
+        y: 99.85714987999657
+      positionAbsolute:
+        x: 190.86604466781705
+        y: 99.85714987999657
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 223aaff6-adbe-4bde-98cd-4768cf449084
+          role: system
+          text: "\u6839\u636E\u6C47\u603B\u7684\u8BC4\u4F30\u7D20\u6750\uFF0C\u4EE5\
+            \u7B2C\u4E09\u65B9\u89C6\u89D2\u901A\u8FC7\u6587\u5B57\u603B\u7ED3\u7CBE\
+            \u70BC\u751F\u6210\u4E2A\u4EBA\u8BC4\u4EF7\u3002\n\u5305\u62EC\u4F46\u4E0D\
+            \u9650\u4E8E\u8FD9\u51E0\u65B9\u9762\u7684\u7EF4\u5EA6\uFF1A\n1\u3001\u4EFB\
+            \u52A1\u5B8C\u6210\u60C5\u51B5\uFF1A\n\uFF081\uFF09\u4EFB\u52A1\u5B8C\u6210\
+            \u6570\u91CF\uFF1A\u8BF4\u660E\u4E2A\u4EBA\u6240\u5B8C\u6210\u7684\u4EFB\
+            \u52A1\u6570\u91CF\u4EE5\u53CA\u4E0A\u4F20\u6587\u6863\u6570\u91CF\uFF0C\
+            \u8FDB\u884C\u5BA2\u89C2\u7684\u8BC4\u4EF7\u3002\n\uFF082\uFF09\u4EFB\u52A1\
+            \u5B8C\u6210\u8D28\u91CF\uFF1A\u8BC4\u4F30\u4EFB\u52A1\u5B8C\u6210\u7684\
+            \u51C6\u786E\u6027\u548C\u8D28\u91CF\uFF0C\u5305\u62EC\u662F\u5426\u8FBE\
+            \u5230\u9884\u671F\u6807\u51C6\u3002\n\uFF083\uFF09\u4EFB\u52A1\u6309\u65F6\
+            \u5B8C\u6210\u60C5\u51B5\uFF1A\u5206\u6790\u4EFB\u52A1\u7684\u6309\u65F6\
+            \u5B8C\u6210\u60C5\u51B5\u4EE5\u53CA\u662F\u5426\u6709\u5EF6\u671F\u3002\
+            \n\n2\u3001\u4F1A\u8BAE\u8FF0\u804C\uFF1A\n\uFF081\uFF09\u8FF0\u804C\u5185\
+            \u5BB9\uFF1A\u603B\u7ED3\u8FF0\u804C\u5185\u5BB9\u3002\n\uFF082\uFF09\u8FF0\
+            \u804C\u5185\u5BB9\u8D28\u91CF\uFF1A\u8BC4\u4F30\u8FF0\u804C\u5185\u5BB9\
+            \u7684\u6E05\u6670\u5EA6\u3001\u903B\u8F91\u6027\u548C\u6DF1\u5165\u5EA6\
+            \u3002\n\n3\u3001\u4E2A\u4EBA\u6210\u679C\u603B\u7ED3\n\u57FA\u4E8E\u4EFB\
+            \u52A1\u5B8C\u6210\u60C5\u51B5\u548C\u4F1A\u8BAE\u8FF0\u804C\u4E24\u65B9\
+            \u9762\u5BF9\u4E2A\u4EBA\u6210\u679C\u7684\u603B\u7ED3\u5206\u6790\u3002\
+            \n\n4\u3001\u4F18\u52BF\u4E0E\u4E0D\u8DB3\n\u5206\u522B\u5199\u51FA\u5DE5\
+            \u4F5C\u505A\u7684\u597D\u7684\u90E8\u5206\u548C\u4E0D\u8DB3\u4E4B\u5904\
+            \uFF0C\u7ED9\u51FA\u5F80\u540E\u7684\u5DE5\u4F5C\u5EFA\u8BAE\u3002\n\u4F8B\
+            \u5982\uFF0C\u4F18\u52BF\u5305\u62EC\u4F46\u4E0D\u9650\u4E8E\uFF1A\n\u9AD8\
+            \u6548\u7684\u6267\u884C\u529B\uFF08\u6839\u636E\u4EFB\u52A1\u5B8C\u6210\
+            \u60C5\u51B5\u4F53\u73B0\uFF09\u3001\u6E05\u6670\u7684\u903B\u8F91\u601D\
+            \u7EF4\uFF08\u6839\u636E\u4F1A\u8BAE\u8FF0\u804C\u4F53\u73B0\uFF09\u7B49\
+            \u65B9\u9762\u3002\n\u4E0D\u8DB3\u5305\u62EC\u4F46\u4E0D\u9650\u4E8E\uFF1A\
+            \n\u65F6\u95F4\u7BA1\u7406\u6709\u5F85\u6539\u8FDB\uFF08\u6839\u636E\u662F\
+            \u5426\u6709\u672A\u5B8C\u6210\u7684\u4EFB\u52A1\uFF09\u7B49\u65B9\u9762\
+            \u3002\n\n\u8981\u6C42\uFF1A\u5206\u6BB5\u603B\u7ED3\u3001\u7528\u8BED\
+            \u771F\u631A\u6E29\u67D4\u3001\u8BED\u53E5\u901A\u7545\u3001\u903B\u8F91\
+            \u6027\u5F3A\u3001\u91CD\u70B9\u7A81\u51FA\u3002\n"
+        - id: 397b742b-5e07-464c-825b-8426fbc0acb0
+          role: user
+          text: '{{#1721722684457.text#}}'
+        selected: false
+        title: "\u4E2A\u4EBA\u8BC4\u4EF7"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721722392705'
+      position:
+        x: 1283.9500597669612
+        y: 91.67826558258469
+      positionAbsolute:
+        x: 1283.9500597669612
+        y: 91.67826558258469
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: d168a43a-6040-4d8a-a314-1eb201bd262a
+          role: system
+          text: "\u5C06\u4F1A\u8BAE\u7EAA\u8981\u4EE5\u53CA\u4F5C\u4E1A\u7EDF\u8BA1\
+            \u6C47\u603B"
+        - id: fb026dc3-0be6-47f7-805f-7b73db9f9da1
+          role: user
+          text: "\u4F5C\u4E1A\u7EDF\u8BA1\uFF1A\n\u53D1\u5E03\u4F5C\u4E1A\u603B\u6570\
+            \uFF1A{{#1721722371654.tasks#}}\n\n\u5DF2\u5B8C\u6210\u4F5C\u4E1A\u6570\
+            :{{#1721722371654.task_completed#}}\n\n\u5DF2\u4E0A\u4F20\u6587\u6863\u6570\
+            \uFF1A{{#1721722371654.documents_uploaded#}}\n\n\u4F1A\u8BAE\u7EAA\u8981\
+            \uFF1A{{#1721736102429.text#}}\n"
+        selected: false
+        title: "\u8BC4\u4F30\u7D20\u6750\u6C47\u603B"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721722684457'
+      position:
+        x: 951.0667644274417
+        y: 99.85714987999657
+      positionAbsolute:
+        x: 951.0667644274417
+        y: 99.85714987999657
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: "\u4F60\u9700\u8981\u5C06\u4E00\u6BB5\u4F1A\u8BAE\u8BED\u97F3\u6574\
+            \u7406\u6210\u6587\u672C\u5E76\u6839\u636E\u4E0D\u540C\u53D1\u8A00\u5BF9\
+            \u8C61\u5212\u5206\u6587\u672C\u7D20\u6750"
+          type: json
+        desc: "\u4F1A\u8BAE\u8F6C\u8BED\u97F3"
+        headers: ''
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: "\u4F1A\u8BAE\u7EAA\u8981"
+        type: http-request
+        url: ''
+        variables: []
+      height: 82
+      id: '1721735630490'
+      position:
+        x: 588.4892875482842
+        y: 276.50150476896516
+      positionAbsolute:
+        x: 588.4892875482842
+        y: 276.50150476896516
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: aa0fcf2d-fef6-49f2-b96b-8a866ea94842
+          role: system
+          text: "\u4F60\u9700\u8981\u5C06\u4E00\u6BB5\u4F1A\u8BAE\u8BED\u97F3\u6574\
+            \u7406\u6210\u6587\u672C\u5E76\u6839\u636E\u4E0D\u540C\u53D1\u8A00\u5BF9\
+            \u8C61\u5212\u5206\u6587\u672C\u7D20\u6750"
+        selected: false
+        title: "\u4F1A\u8BAE\u7EAA\u8981"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721736102429'
+      position:
+        x: 580.5714242561811
+        y: 99.85714987999657
+      positionAbsolute:
+        x: 580.5714242561811
+        y: 99.85714987999657
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: Dify
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"\
+          mode\":\"normal\",\"style\":\"font-size: 12px;\",\"text\":\"\u63A5\u53E3\
+          \",\"type\":\"text\",\"version\":1},{\"detail\":0,\"format\":0,\"mode\"\
+          :\"normal\",\"style\":\"\",\"text\":\"\uFF1A\u4F1A\u8BAE\u7EAA\u8981\uFF08\
+          \u4F1A\u8BAE\u8BED\u97F3\u8F6C\u6587\u5B57\uFF09\",\"type\":\"text\",\"\
+          version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\"\
+          :\"paragraph\",\"version\":1,\"textFormat\":1}],\"direction\":\"ltr\",\"\
+          format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: yellow
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1721785245148'
+      position:
+        x: 588.4892875482842
+        y: 232.4285777745236
+      positionAbsolute:
+        x: 588.4892875482842
+        y: 232.4285777745236
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Dify
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u8C03\u6570\u636E\uFF1A\u53D1\
+          \u5E03\u4F5C\u4E1A\u603B\u6570\u3001\u5DF2\u5B8C\u6210\u4EFB\u52A1\u603B\
+          \u6570\u3001\u5DF2\u4E0A\u4F20\u6587\u6863\u6570\",\"type\":\"text\",\"\
+          version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\"\
+          :\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\":\"ltr\",\"\
+          format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1721785963131'
+      position:
+        x: 182.55362288502715
+        y: -26.643896670828497
+      positionAbsolute:
+        x: 182.55362288502715
+        y: -26.643896670828497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        author: Dify
+        desc: ''
+        height: 88
+        selected: false
+        showAuthor: true
+        text: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"\
+          mode\":\"normal\",\"style\":\"\",\"text\":\"\u585E\u6574\u7406\u597D\u7684\
+          \u4F1A\u8BAE\u7EAA\u8981\u548C\u4F5C\u4E1A\u7D20\u6750\u8FDB\u8868\",\"\
+          type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"\
+          indent\":0,\"type\":\"paragraph\",\"version\":1,\"textFormat\":0}],\"direction\"\
+          :\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+        theme: blue
+        title: ''
+        type: ''
+        width: 240
+      height: 88
+      id: '1721806758847'
+      position:
+        x: 951.0667644274417
+        y: -3.1491389633625744
+      positionAbsolute:
+        x: 951.0667644274417
+        y: -3.1491389633625744
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 240
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: "\u7ED3\u675F "
+        type: end
+      height: 54
+      id: '1721874298336'
+      position:
+        x: 1587.9500597669612
+        y: 91.67826558258469
+      positionAbsolute:
+        x: 1587.9500597669612
+        y: 91.67826558258469
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -247.799727546344
+      y: 181.73689352422764
+      zoom: 0.6215384604221638

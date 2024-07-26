@@ -1,0 +1,153 @@
+app:
+  description: "\u8BA9AI\u63D0\u53D6\u201C\u521B\u5EFA\u9879\u76EE\u201D\u7684\u65F6\
+    \u5019\u7684\u4FE1\u606F\u603B\u7ED3\u6210\u4E00\u53E5\u8BDD\uFF0C\u8BA9\u4EBA\
+    \u4E00\u773C\u5C31\u77E5\u9053\u8FD9\u4E2A\u9879\u76EE\u662F\u5E72\u5565\u7684\
+    \u3002"
+  icon: triangular_flag_on_post
+  icon_background: '#D5D9EB'
+  mode: workflow
+  name: "\u9879\u76EE\u4E00\u53E5\u8BDD\u6982\u8FF0Agent12"
+kind: app
+version: 0.1.0
+workflow:
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1721834605001-source-1721834613439-target
+      source: '1721834605001'
+      sourceHandle: source
+      target: '1721834613439'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1721834613439-source-1721834757959-target
+      source: '1721834613439'
+      sourceHandle: source
+      target: '1721834757959'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\u5F00\u59CB"
+        type: start
+        variables:
+        - label: "\u9879\u76EE\u4FE1\u606F"
+          max_length: 4096
+          options: []
+          required: true
+          type: paragraph
+          variable: information
+      height: 90
+      id: '1721834605001'
+      position:
+        x: 67.78429739517179
+        y: 282
+      positionAbsolute:
+        x: 67.78429739517179
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 2731307d-3216-41aa-81a8-028bb32e081e
+          role: system
+          text: "\u6839\u636E\u9879\u76EE\u4FE1\u606F\u7528\u4E00\u53E5\u8BDD\u603B\
+            \u7ED3\u7CBE\u70BC\uFF0C\u91CD\u70B9\u603B\u7ED3\u6838\u5FC3\u95EE\u9898\
+            \u8FD9\u4E00\u4E2A\u4FE1\u606F\u70B9\u3002\u8FD9\u53E5\u8BDD\u4E2D\u5305\
+            \u62EC\u8FD9\u4E2A\u9879\u76EE\u662F\u4EC0\u4E48\u548C\u9879\u76EE\u76EE\
+            \u6807\u7B49\u5FC5\u8981\u4FE1\u606F\u3002\u4F7F\u4EBA\u80FD\u901A\u8FC7\
+            \u8FD9\u53E5\u8BDD\u6E05\u6670\u5730\u77E5\u6653\u9879\u76EE\u7684\u6982\
+            \u51B5\u3002\u8981\u6C42\u7CBE\u51C6\u3001\u7CBE\u7B80\uFF0C\u4E0D\u8981\
+            \u51FA\u73B0\u5E9F\u8BDD\u3002"
+        - id: 79395cd0-1786-4d53-9cac-4744952c5fa5
+          role: user
+          text: '{{#1721834605001.information#}}'
+        selected: false
+        title: "\u4E00\u53E5\u8BDD\u603B\u7ED3"
+        type: llm
+        variables: []
+        vision:
+          configs:
+            detail: high
+          enabled: true
+      height: 98
+      id: '1721834613439'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs: []
+        selected: false
+        title: "\u7ED3\u675F"
+        type: end
+      height: 54
+      id: '1721834757959'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 55.89523261719444
+      y: -35.36589274232955
+      zoom: 1.0384009473861797
